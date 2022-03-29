@@ -5,12 +5,12 @@ export class CustomersController {
 
     @Get()
     getCustomers(
-      @Query('limit') limit = 100, 
-      @Query('offset') offset = 0, 
-      @Query('brand') brand: string,
+      @Query('name') name: string, 
+      @Query('lastname') lastname: string, 
+      @Query('phone') phone: number,
     ) {
       return {
-          message: `customers limit=> ${limit} offset=> ${offset} brand=> ${brand}`,
+          message: `customers name=> ${name} lastname=> ${lastname} phone=> ${phone}`,
       }
     }
   
@@ -18,30 +18,19 @@ export class CustomersController {
     getCustomerFilter() {
       return `Yo soy un filter`;
     }
-  
+
     @Get(':customerId')
     getCustomer(@Param('customerId') customerId: string) {
       return `customer ${customerId}`;
     }
 
     @Post()
-    create(@Body() payload:any) {
-        return {
-            message: 'accion de crear',
-            payload,
-        };
-    }
-
-    @Put(':id')
-    update(@Param('id') id: number, @Body() payload: any) {
+    create(@Body() payload: any) {
       return {
-        id,
+        message: `Accion de crear`,
         payload,
-      };
+      }
     }
+  
 
-    @Delete(':id')
-    delete(@Param('id') id: number) {
-      return id;
-    }
 }
